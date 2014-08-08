@@ -5,6 +5,12 @@ class Main extends CI_Controller {
     public $us;
     public $url;
     public $type;
+    public $mods = array(
+        
+    );
+    public $page = array(
+        
+    );
     public $out;
     
     public function __construct() {
@@ -14,10 +20,38 @@ class Main extends CI_Controller {
     }
     
     public function index() {
-        
-        
-
+        $this->urlgetdata();
         $this->out();
+    }
+    
+    private function getcontent(){
+        switch($this->type){
+            case 'pages':
+                
+                break;
+            case 'articles':
+                
+                break;
+            case 'news':
+                
+                break;
+            case 'catalog':
+                
+                break;
+            case 'items':
+                
+                break;
+            case 'contacts':
+                
+                break;
+            case 'main':
+                
+                break;
+        }
+    }
+    
+    private function loadmodules(){
+        
     }
     
     private function urlroute(){
