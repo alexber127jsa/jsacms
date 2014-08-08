@@ -6,11 +6,15 @@ class Main extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->us = $this->session_model->getusdata();
+        $this->getusersess();
     }
     
     public function index() {
         $this->display_lib->main();
+    }
+    
+    private function getusersess(){
+        $this->us = $this->session_model->getusdata();
     }
 
 }
