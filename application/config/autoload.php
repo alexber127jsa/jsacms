@@ -54,7 +54,8 @@ $autoload['packages'] = array();
 
 $autoload['libraries'] = array(
     'database',
-    'session'
+    'session',
+    'frontend/display_lib'
 );
 
 
