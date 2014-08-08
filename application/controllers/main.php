@@ -7,7 +7,7 @@ class Main extends CI_Controller {
     }
     
     public function index() {
-        echo 'main controller';
+        $this->display_lib->main();
     }
 
 }

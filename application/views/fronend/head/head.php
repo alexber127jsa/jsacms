@@ -8,7 +8,8 @@
         <meta name="author" content="JsaCms - generator" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <link rel="stylesheet" type="text/css" media="all" href="" />
-        <script type="text/javascript" src="../nav/nav.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="/css/t.css" />
+        <script type="text/javascript" src="/js/j.js"></script>
+        <script type="text/javascript" src="/js/c.js"></script>
     </head>
     <body>

@@ -114,7 +114,8 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array(
-    
+    'users_model',
+    'pages_model'
 );
 
 
