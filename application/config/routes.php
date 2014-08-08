@@ -38,7 +38,11 @@
 |
 */
 
-$route['default_controller'] = "main/index";
+$route['default_controller']            = "main/index";
+$route['(:any)']                        = "main/index";
+$route['(:any),(:any)']                 = "main/index";
+$route['(:any),(:any),(:any)']          = "main/index";
+$route['(:any),(:any),(:any),(:any)']   = "main/index";
 $route['404_override'] = '';
 
 
