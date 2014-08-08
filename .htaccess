@@ -1,0 +1,4 @@
+AddDefaultCharset UTF-8
+RewriteEngine on
+RewriteCond $1 !^(index\.php|.*/serthsrth|img|userfiles|js|css|robots\.txt)
+RewriteRule ^(.*)$ /index.php/$1 [L]
