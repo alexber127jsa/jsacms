@@ -3,6 +3,8 @@ body {
     padding: 0;
     font-size: 13px;
     font-family: 'Oswald', sans-serif, Tahoma, Arial;
+    background-image: url(/img/back.jpg);
+    background-repeat: repeat;
 }
 div, ul, li, a, table, tr, td, h1, h2, h3, h4, h5, h6  {
     margin: 0;
@@ -14,4 +16,86 @@ a {
 }
 a:hover {
     text-decoration: underline;
+}
+.center {
+    position: relative;
+    margin: 10% auto;
+    width: 400px;
+    height: 253px;
+    background-color: #F9F9F9;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    overflow: hidden;
+    -webkit-box-shadow: 2px 2px 9px 0px rgba(50, 50, 50, 0.41);
+    -moz-box-shadow:    2px 2px 9px 0px rgba(50, 50, 50, 0.41);
+    box-shadow:         2px 2px 9px 0px rgba(50, 50, 50, 0.41);
+}
+.center_head {
+    display: block;
+    width: auto;
+    height: auto;
+    font-size: 27px;
+    color: #ffffff;
+    padding: 10px 10px 10px 20px;
+    background-color: #008cba;
+}
+.center_head span{
+    font-size: 12px;
+    color: #ffffff;
+}
+.center_content label {
+    display: block;
+    width: 91%;
+    height: auto;
+    padding: 5px;
+    margin: 5px 10px 0px 10px;
+    outline: none;
+}
+.center_content input[type="text"], .center_content input[type="password"] {
+    display: block;
+    width: 91%;
+    height: auto;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    margin: 0px 10px 5px 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    outline: none;
+}
+.submit_button {
+    float: left;
+    clear: both;
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 10px 30px;
+    background-color: #008cba;
+    color: #ffffff;
+    margin: 10px;
+    font-weight: bold;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    box-shadow: none;
+    cursor: pointer;
+}
+.submit_button:hover {
+    float: left;
+    clear: both;
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 10px 30px;
+    background-color: #008cba;
+    color: #ffffff;
+    margin: 10px;
+    font-weight: bold;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 2px 2px 9px 0px rgba(50, 50, 50, 0.41);
+    -moz-box-shadow:    inset 2px 2px 9px 0px rgba(50, 50, 50, 0.41);
+    box-shadow:         inset 2px 2px 9px 0px rgba(50, 50, 50, 0.41);
 }
