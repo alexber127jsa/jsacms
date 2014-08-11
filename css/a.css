@@ -99,3 +99,15 @@ a:hover {
     -moz-box-shadow:    inset 2px 2px 9px 0px rgba(50, 50, 50, 0.41);
     box-shadow:         inset 2px 2px 9px 0px rgba(50, 50, 50, 0.41);
 }
+.warn {
+    display: none;
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    padding: 10px 20px;
+    background-color: #FFA084;
+    border: 1px solid #DA4C4C;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
