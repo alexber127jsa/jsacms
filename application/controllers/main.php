@@ -6,7 +6,8 @@ class Main extends CI_Controller {
     public $url;
     public $type;
     public $mods = array(
-        
+        'top_menu'      => array(),
+        'last_news'     => array()
     );
     public $page = array(
         
@@ -20,7 +21,8 @@ class Main extends CI_Controller {
     }
     
     public function index() {
-        $this->urlgetdata();
+        $this->getcontent();
+        $this->loadmodules();
         $this->out();
     }
     
@@ -51,6 +53,17 @@ class Main extends CI_Controller {
     }
     
     private function loadmodules(){
+        $this->mods = array(
+            'top_menu'  => $this->modules_model->top_menu(),
+            'last_news' => $this->modules_model->last_news()
+        );
+        
+        
+        echo '<pre>';
+        print_r($this->mods);
+        echo '</pre>';
+        
+        
         
     }
     

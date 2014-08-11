@@ -114,7 +114,11 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array(
+    //-------------------------------
     'base_models/session_model',
+    'base_models/modules_model',
+    'base_models/date_model',
+    //-------------------------------
     'crud_models/users_model',
     'crud_models/pages_model',
     'crud_models/news_model',
