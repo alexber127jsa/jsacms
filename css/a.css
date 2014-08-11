@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    font-family: 'Oswald', sans-serif, Tahoma, Arial;
+}
+div, ul, li, a, table, tr, td, h1, h2, h3, h4, h5, h6  {
+    margin: 0;
+    padding: 0;
+    color: #4A4A4A;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

@@ -39,6 +39,13 @@
 */
 
 $route['default_controller']            = "main/index";
+
+$route['admin']                         = "admin/index";
+$route['admin/(:any)']                  = "admin/index";
+$route['admin/(:any)/(:any)']           = "admin/index";
+$route['admin/(:any)/(:any)/(:any)']    = "admin/index";
+
+
 $route['(:any)']                        = "main/index";
 $route['(:any),(:any)']                 = "main/index";
 $route['(:any),(:any),(:any)']          = "main/index";
