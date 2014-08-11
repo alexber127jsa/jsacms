@@ -8,14 +8,16 @@ class Admin extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->loadlibrary();
+        $this->baseload();
     }
     
     public function index(){
         $this->display_admin_lib->login();
     }
     
-    private function loadlibrary(){
+    private function baseload(){
+        $this->us   = $this->session_model->getusdata();
+        $this->url  = $this->uri->segments;
         $this->load->library('admin/display_admin_lib');
     }
     
