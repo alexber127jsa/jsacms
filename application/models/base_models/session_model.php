@@ -50,10 +50,16 @@ class Session_model extends CI_Model {
             redirect(base_url().'admin');
         }
     }
+    
     public function uncheckussess(){
         if($this->us['auth']){
             redirect(base_url().'admin/main');
         }
+    }
+    
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect(base_url().'admin');
     }
     
 }

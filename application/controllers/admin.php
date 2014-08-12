@@ -13,7 +13,7 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->baseload();
         $this->postinit();
-        
+        //$this->output->enable_profiler(TRUE);
     }
     
     public function index(){
@@ -23,6 +23,7 @@ class Admin extends CI_Controller {
     
     private function out(){
         $this->out = array(
+            'type'  => $this->type,
             'cont'  => $this->cont,
             'user'  => $this->us,
             'urlv'  => $this->url,
@@ -32,6 +33,9 @@ class Admin extends CI_Controller {
         $this->display_admin_lib->setdatamain($this->out);
         switch($this->type){
             case 'main':
+                $this->display_admin_lib->main();
+                break;
+            case 'mainedit':
                 $this->display_admin_lib->main();
                 break;
             
@@ -44,7 +48,18 @@ class Admin extends CI_Controller {
             switch($this->url[2]){
                 case 'main': 
                     $this->type = 'main';
-                    
+                    $this->cont = $this->pages_model->select('all');
+                    break;
+                case 'mainedit': 
+                    $this->type = 'mainedit';
+                    $this->cont = $this->pages_model->select('id',(int)$this->url[3]);
+                    break;
+                case 'mainsave': 
+                    $this->pages_model->update($this->ps);
+                    redirect(base_url().'admin/main');
+                    break;
+                case 'logout': 
+                    $this->session_model->logout();
                     break;
             }
         } else {
@@ -74,7 +89,6 @@ class Admin extends CI_Controller {
             $this->ps = $this->input->post();
             if(isset($this->ps['data']['type']))
                 $this->routepathpost();
-            else exit();
         }
     }
     
