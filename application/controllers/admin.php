@@ -2,10 +2,12 @@
 
 class Admin extends CI_Controller {
     
-    public $us;
-    public $url;
+    public $us = array();
+    public $url = array();
     public $type;
+    public $cont = array();
     public $ps = 'none';
+    public $out = array();
     
     public function __construct() {
         parent::__construct();
@@ -16,23 +18,33 @@ class Admin extends CI_Controller {
     
     public function index(){
         $this->urlrouteauth();
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        $this->out();
+    }
+    
+    private function out(){
+        $this->out = array(
+            'cont'  => $this->cont,
+            'user'  => $this->us,
+            'urlv'  => $this->url,
+            'post'  => $this->ps
+        );
+        $this->out['json'] = json_encode($this->out);
+        $this->display_admin_lib->setdatamain($this->out);
+        switch($this->type){
+            case 'main':
+                $this->display_admin_lib->main();
+                break;
+            
+        }
     }
     
     private function urlrouteauth(){
         if(!empty($this->url) && isset($this->url[2])){
             $this->session_model->checkussess();
             switch($this->url[2]){
-                case 'main':
-                    echo 'main';
+                case 'main': 
+                    $this->type = 'main';
+                    
                     break;
             }
         } else {
