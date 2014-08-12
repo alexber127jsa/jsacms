@@ -55,10 +55,17 @@ class Admin extends CI_Controller {
                     break;
                 case 'mainedit': 
                     $this->type = 'mainedit';
-                    $this->cont = $this->pages_model->select('id',(int)$this->url[3]);
+                    if(isset($this->url[3]))
+                        $this->cont = $this->pages_model->select('id',(int)$this->url[3]);
+                    if(empty($this->cont))redirect(base_url().'admin/main');
                     break;
                 case 'mainnew': 
                     $this->type = 'mainnew';
+                    break;
+                case 'maindel': 
+                    if(isset($this->url[3]))
+                        $this->cont = $this->pages_model->delete((int)$this->url[3]);
+                    redirect(base_url().'admin/main');
                     break;
                 case 'mainsave': 
                     $this->pages_model->update($this->ps);

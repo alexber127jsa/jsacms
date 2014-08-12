@@ -32,8 +32,9 @@ class Pages_model extends CI_Model {
         $this->db->insert(self::T, $d);
     }
     
-    public function delete(){
-        
+    public function delete($i){
+        $this->db->where('id',$i);
+        $this->db->delete(self::T);
     }
     
 }

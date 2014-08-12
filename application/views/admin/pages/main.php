@@ -10,6 +10,7 @@
                 <th width="70">В меню</th>
                 <th width="90">Создана</th>
                 <th width="90">Просмотров</th>
+                <th width="90">Удаление</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
                 <td><?=($item['in_menu'])? 'Да' : 'Нет' ?></td>
                 <td><?=mb_substr($item['created'],0,10)?></td>
                 <td><?=$item['view']?></td>
+                <td><a href="/admin/maindel/<?=$item['id']?>" class="buttom small">Удалить</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -84,17 +86,17 @@
     <form action="/admin/mainnewsave" class="addnew" method="post">
         <div class="large-8 columns">
         <label>Наименование
-            <input type="text" name="title" value="" placeholder="">
+            <input type="text" name="title" required value="" placeholder="">
         </label>
         </div>
         <div class="large-4 columns">
         <label>Пункт меню
-            <input type="text" name="name_menu" value="" placeholder="">
+            <input type="text" name="name_menu" required value="" placeholder="">
         </label>
         </div>
         <div class="large-12 columns">
         <label>Алиас
-            <input type="text" name="slug" class="error" value="" placeholder="">
+            <input type="text" name="slug" required pattern="[a-zA-Z]+" value="" placeholder="">
         </label>
         </div>
         <div class="large-12 columns">
@@ -109,12 +111,12 @@
         </div>
         <div class="large-12 columns">
         <label>Краткое описание
-            <textarea name="summary" placeholder=""></textarea>
+            <textarea name="summary" required placeholder=""></textarea>
         </label>
         </div>
         <div class="large-12 columns">
         <label>Полное описание
-            <textarea name="content" placeholder=""></textarea>
+            <textarea name="content" required placeholder=""></textarea>
         </label>
         </div>
         <div class="large-12 columns">
@@ -129,9 +131,6 @@
         </div>
         <div class="large-12 columns">
             <button type="submit" class="button small blue">Добавить</button>
-        </div>
-        <div class="large-12 columns">
-            <span class="radius secondary label">Заполните все поля</span>
         </div>
     </form>
     <?php endif; ?>

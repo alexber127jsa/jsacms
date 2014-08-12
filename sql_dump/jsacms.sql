@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 11 2014 г., 21:29
+-- Время создания: Авг 12 2014 г., 22:50
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.28
 
@@ -138,7 +138,7 @@ INSERT INTO `news` (`id`, `title`, `description`, `keywords`, `summary`, `conten
 
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` text NOT NULL,
+  `type` varchar(1000) NOT NULL DEFAULT 'pages',
   `slug` text NOT NULL,
   `name_menu` text NOT NULL,
   `title` text NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `params4` text NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Дамп данных таблицы `pages`
@@ -168,7 +168,8 @@ INSERT INTO `pages` (`id`, `type`, `slug`, `name_menu`, `title`, `description`, 
 (3, 'pages', 'main3', 'Страница 3', 'Третья страница', 'Третья страница', 'Третья страница', 'Третья страница короткое описание', 'Третья страница полное описание', '2014-08-09 06:32:28', '1', '1', 0, '', '', '', '', 3),
 (4, 'pages', 'main4', 'Страница 4', 'Четвертая страница', 'Четвертая страница', 'Четвертая страница', 'Четвертая страница короткое описание', 'Четвертая страница полное описание ', '2014-08-09 06:32:28', '1', '1', 0, '', '', '', '', 4),
 (5, 'pages', 'main5', 'Страница 5', 'Пятая страница', 'Пятая страница', 'Пятая страница', 'Пятая страница', 'Пятая страница', '2014-08-09 06:35:18', '1', '1', 0, '', '', '', '', 5),
-(6, 'pages', 'main6', 'Страница 6', 'Шестая страница', 'Шестая страница', 'Шестая страница', 'Шестая страница короткое описание', 'Шестая страница полное описание', '2014-08-09 06:35:18', '1', '1', 0, '', '', '', '', 6);
+(6, 'pages', 'main6', 'Страница 6', 'Шестая страница', 'Шестая страница', 'Шестая страница', 'Шестая страница короткое описание', 'Шестая страница полное описание', '2014-08-09 06:35:18', '1', '1', 0, '', '', '', '', 6),
+(8, '', 'newset', 'Новье', 'Новая страница', '', '', 'Краткое описание страницы', 'Длинное описание страницы', '2014-08-12 17:48:35', '1', '1', 0, '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -185,6 +186,13 @@ CREATE TABLE IF NOT EXISTS `sess` (
   PRIMARY KEY (`session_id`),
   KEY `last_activity_idx` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `sess`
+--
+
+INSERT INTO `sess` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
+('f9e6d8cf22cf3aea5c15ebaf6c54a1d6', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36', 1407862894, 'a:1:{s:9:"user_data";a:7:{s:2:"id";s:1:"1";s:8:"username";s:5:"admin";s:8:"password";s:32:"202cb962ac59075b964b07152d234b70";s:5:"email";s:14:"admin@admin.ru";s:6:"status";s:1:"0";s:7:"comment";s:37:"Администратор сайта";s:4:"auth";b:1;}}');
 
 -- --------------------------------------------------------
 
