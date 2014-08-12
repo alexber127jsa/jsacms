@@ -38,6 +38,9 @@ class Admin extends CI_Controller {
             case 'mainedit':
                 $this->display_admin_lib->main();
                 break;
+            case 'mainnew':
+                $this->display_admin_lib->main();
+                break;
             
         }
     }
@@ -54,8 +57,15 @@ class Admin extends CI_Controller {
                     $this->type = 'mainedit';
                     $this->cont = $this->pages_model->select('id',(int)$this->url[3]);
                     break;
+                case 'mainnew': 
+                    $this->type = 'mainnew';
+                    break;
                 case 'mainsave': 
                     $this->pages_model->update($this->ps);
+                    redirect(base_url().'admin/main');
+                    break;
+                case 'mainnewsave': 
+                    $this->pages_model->insert($this->ps);
                     redirect(base_url().'admin/main');
                     break;
                 case 'logout': 

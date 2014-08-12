@@ -4,7 +4,6 @@ function utilsClass(){
     this.constr = function(){ // constructor
         
     };
-    
     this.constr();
 }
 

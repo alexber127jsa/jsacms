@@ -25,6 +25,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <a href="<?=base_url().'admin/mainnew'?>" class="button small [radius round]" >Новая страница</a>
     <?php endif; ?>
     <?php if($type == 'mainedit'): ?>
     <form action="/admin/mainsave" method="post">
@@ -75,7 +76,62 @@
             <input type="radio" <?=($cont['in_menu'])?'checked="checked"':''?> name="in_menu" value="1" id="in_menu"><label for="in_menu">Да</label>
         </div>
         <div class="large-12 columns">
-            <button type="submit" class="button medium blue">Сохранить</button>
+            <button type="submit" class="button small blue">Сохранить</button>
+        </div>
+    </form>
+    <?php endif; ?>
+    <?php if($type == 'mainnew'): ?>
+    <form action="/admin/mainnewsave" class="addnew" method="post">
+        <div class="large-8 columns">
+        <label>Наименование
+            <input type="text" name="title" value="" placeholder="">
+        </label>
+        </div>
+        <div class="large-4 columns">
+        <label>Пункт меню
+            <input type="text" name="name_menu" value="" placeholder="">
+        </label>
+        </div>
+        <div class="large-12 columns">
+        <label>Алиас
+            <input type="text" name="slug" class="error" value="" placeholder="">
+        </label>
+        </div>
+        <div class="large-12 columns">
+        <label>Описание страницы (description)
+            <textarea name="description" placeholder=""></textarea>
+        </label>
+        </div>
+        <div class="large-12 columns">
+        <label>Ключевые слова страницы (keywords)
+            <textarea name="keywords" placeholder=""></textarea>
+        </label>
+        </div>
+        <div class="large-12 columns">
+        <label>Краткое описание
+            <textarea name="summary" placeholder=""></textarea>
+        </label>
+        </div>
+        <div class="large-12 columns">
+        <label>Полное описание
+            <textarea name="content" placeholder=""></textarea>
+        </label>
+        </div>
+        <div class="large-12 columns">
+            <label>Опубликована ли страница</label>
+            <input type="radio" name="in_published" value="0" id="in_published"><label for="in_published">Нет</label>
+            <input type="radio" checked="checked" name="in_published" value="1" id="in_published"><label for="in_published">Да</label>
+        </div>
+        <div class="large-12 columns">
+            <label>Разместить пункт в меню</label>
+            <input type="radio" name="in_menu" value="0" id="in_menu"><label for="in_menu">Нет</label>
+            <input type="radio" checked="checked" name="in_menu" value="1" id="in_menu"><label for="in_menu">Да</label>
+        </div>
+        <div class="large-12 columns">
+            <button type="submit" class="button small blue">Добавить</button>
+        </div>
+        <div class="large-12 columns">
+            <span class="radius secondary label">Заполните все поля</span>
         </div>
     </form>
     <?php endif; ?>

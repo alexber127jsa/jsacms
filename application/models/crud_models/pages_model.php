@@ -28,8 +28,8 @@ class Pages_model extends CI_Model {
         $this->db->update(self::T, $d);
     }
     
-    public function insert(){
-        
+    public function insert($d){
+        $this->db->insert(self::T, $d);
     }
     
     public function delete(){
