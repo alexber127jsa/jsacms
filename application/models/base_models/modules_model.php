@@ -36,7 +36,7 @@ class Modules_model extends CI_Model {
         $this->db->select('id');
         $this->db->select('title');
         $this->db->select('summary');
-        $this->db->select('create');
+        $this->db->select('created');
         //---------------------------------------
         $q = $this->db->get(self::T_news);
         $data = $q->result_array();

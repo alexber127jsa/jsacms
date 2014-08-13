@@ -9,7 +9,7 @@ class Date_model extends CI_Model {
     public function parsedateform($d){
         $compl = array();
         foreach($d as $i){
-            $i['create'] = $this->formmonth($i['create']);
+            $i['created'] = $this->formmonth($i['created']);
             $compl[] = $i;
         }
         return $compl;
