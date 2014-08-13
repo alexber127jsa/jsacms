@@ -7,7 +7,8 @@ class Main extends CI_Controller {
     public $type;
     public $mods = array(
         'top_menu'      => array(),
-        'last_news'     => array()
+        'last_news'     => array(),
+        'last_articles' => array()
     );
     public $page = array(
         
@@ -54,8 +55,9 @@ class Main extends CI_Controller {
     
     private function loadmodules(){
         $this->mods = array(
-            'top_menu'  => $this->modules_model->top_menu(),
-            'last_news' => $this->modules_model->last_news()
+            'top_menu'      => $this->modules_model->top_menu(),
+            'last_news'     => $this->modules_model->last_news(),
+            'last_articles' => $this->modules_model->last_articles()
         );
         
         

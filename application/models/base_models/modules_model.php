@@ -13,6 +13,19 @@ class Modules_model extends CI_Model {
         parent::__construct();
     }
     
+    public function last_articles(){
+        $this->db->where('in_published','1');
+        //----------- sortable ------------------
+        $this->db->order_by('id','desc');
+        //----------- select field --------------
+        $this->db->select('id');
+        $this->db->select('title');
+        $this->db->select('slug');
+        //---------------------------------------
+        $q = $this->db->get(self::T_pages);
+        return $q->result_array();
+    }
+    
     public function top_menu(){
         $this->db->where('in_published','1');
         $this->db->where('in_menu','1');

@@ -47,6 +47,11 @@ class Admin extends CI_Controller {
             case 'articlesnew':
                 $this->display_admin_lib->articles();
                 break;
+            case 'catalog':
+            case 'catalogedit':
+            case 'catalognew':
+                $this->display_admin_lib->catalog();
+                break;
         }
     }
     
@@ -54,7 +59,33 @@ class Admin extends CI_Controller {
         if(!empty($this->url) && isset($this->url[2])){
             $this->session_model->checkussess();
             switch($this->url[2]){
-                //============ ARTECLIS ============================================
+                //============ CATALOG =========================================
+                /*case 'catalognew': 
+                    $this->type = 'catalognew';
+                    break;*/
+                case 'catalog': 
+                    $this->type = 'catalog';
+                    $this->cont = $this->catalog_model->select('alladmin');
+                    break;
+                /*case 'catalogsave': 
+                    $this->catalog_model->update($this->ps);
+                    redirect(base_url().'admin/catalog');
+                    break;
+                case 'articlesnewsave': 
+                    $this->articles_model->insert($this->ps);
+                    redirect(base_url().'admin/catalog');
+                    break;
+                case 'articlesdel': 
+                    if(isset($this->url[3]))
+                        $this->articles_model->delete((int)$this->url[3]);
+                    redirect(base_url().'admin/catalog');
+                case 'articlesedit': 
+                    $this->type = 'catalogedit';
+                    if(isset($this->url[3]))
+                        $this->cont = $this->catalog_model->select('id',(int)$this->url[3]);
+                    if(empty($this->cont))redirect(base_url().'admin/catalog');
+                    break;*/
+                //============ ARTECLIS ========================================
                 case 'articlesnew': 
                     $this->type = 'articlesnew';
                     break;

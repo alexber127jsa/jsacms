@@ -44,4 +44,12 @@ class Display_admin_lib {
         $this->C->load->view('admin/bottom/bottom_us');
     }
     
+    public function catalog(){
+        $this->C->load->view('load/load',$this->dt);
+        $this->C->load->view('admin/head/head_us');
+        $this->C->load->view('admin/mods/topmenu');
+        $this->C->load->view('admin/pages/catalog');
+        $this->C->load->view('admin/bottom/bottom_us');
+    }
+    
 }
