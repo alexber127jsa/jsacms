@@ -104,7 +104,6 @@ a:hover {
     margin: 10px auto;
     width: 1200px;
     height: auto;
-    min-height: 500px;
     background-color: #FFFFFF;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -125,4 +124,15 @@ a:hover {
     background-repeat: no-repeat;
     background-position: left center;
     border-bottom: 1px dashed #cccccc;
+}
+.href_white{
+    color: #ffffff;
+    padding: 5px 5px 5px 5px !important;
+}
+.copyrg {
+    display: block;
+    padding: 5px;
+    margin: 5px 0;
+    border-top: 1px dashed #cccccc;
+    text-align: right;
 }
