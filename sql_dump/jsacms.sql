@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 11 2014 г., 21:29
+-- Время создания: Авг 13 2014 г., 19:42
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.28
 
@@ -34,14 +34,25 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `summary` text NOT NULL,
   `content` text NOT NULL,
   `in_published` int(11) NOT NULL,
-  `create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `view` int(11) NOT NULL,
   `params1` text NOT NULL,
   `params2` text NOT NULL,
   `params3` text NOT NULL,
   `params4` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Дамп данных таблицы `articles`
+--
+
+INSERT INTO `articles` (`id`, `title`, `description`, `keywords`, `summary`, `content`, `in_published`, `created`, `view`, `params1`, `params2`, `params3`, `params4`) VALUES
+(2, 'Статья 1', 'Статья 1', 'Статья 1', 'Статья 1', 'Статья 1', 1, '2014-08-13 14:39:26', 0, '', '', '', ''),
+(3, 'Статья 2', 'Статья 2', 'Статья 2', 'Статья 2', 'Статья 2', 1, '2014-08-13 14:40:15', 0, '', '', '', ''),
+(4, 'Статья 3', 'Статья 3', 'Статья 3', 'Статья 3', 'Статья 3', 1, '2014-08-13 14:40:23', 0, '', '', '', ''),
+(5, 'Статья 4', 'Статья 4', 'Статья 4', 'Статья 4', 'Статья 4', 1, '2014-08-13 14:40:32', 0, '', '', '', ''),
+(6, 'Статья 5', 'Статья 5', 'Статья 5', 'Статья 5', 'Статья 5', 1, '2014-08-13 14:40:40', 0, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -111,20 +122,20 @@ CREATE TABLE IF NOT EXISTS `news` (
   `summary` text NOT NULL,
   `content` text NOT NULL,
   `in_published` int(11) NOT NULL DEFAULT '0',
-  `create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `view` int(11) NOT NULL,
   `params1` text NOT NULL,
   `params2` text NOT NULL,
   `params3` text NOT NULL,
   `params4` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Дамп данных таблицы `news`
 --
 
-INSERT INTO `news` (`id`, `title`, `description`, `keywords`, `summary`, `content`, `in_published`, `create`, `view`, `params1`, `params2`, `params3`, `params4`) VALUES
+INSERT INTO `news` (`id`, `title`, `description`, `keywords`, `summary`, `content`, `in_published`, `created`, `view`, `params1`, `params2`, `params3`, `params4`) VALUES
 (1, 'Первая новость', 'Первая новость', 'Первая новость', 'Первая новость короткое описание', 'Первая новость полное описание', 1, '2014-08-09 07:09:05', 0, '', '', '', ''),
 (2, 'Вторая новость', 'Вторая новость', 'Вторая новость', 'Вторая новость короткое описание', 'Вторая новость полное описание', 1, '2014-08-09 07:09:05', 0, '', '', '', ''),
 (3, 'Третья новость', 'Третья новость', 'Третья новость', 'Третья новость короткое описание', 'Третья новость полное описание', 1, '2014-08-09 07:12:20', 0, '', '', '', ''),
@@ -138,7 +149,7 @@ INSERT INTO `news` (`id`, `title`, `description`, `keywords`, `summary`, `conten
 
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` text NOT NULL,
+  `type` varchar(1000) NOT NULL DEFAULT 'pages',
   `slug` text NOT NULL,
   `name_menu` text NOT NULL,
   `title` text NOT NULL,
@@ -156,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `params4` text NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Дамп данных таблицы `pages`
@@ -185,6 +196,13 @@ CREATE TABLE IF NOT EXISTS `sess` (
   PRIMARY KEY (`session_id`),
   KEY `last_activity_idx` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `sess`
+--
+
+INSERT INTO `sess` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
+('ad32636b95df86240f89aeef076b3606', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36', 1407939434, 'a:1:{s:9:"user_data";a:7:{s:2:"id";s:1:"1";s:8:"username";s:5:"admin";s:8:"password";s:32:"202cb962ac59075b964b07152d234b70";s:5:"email";s:14:"admin@admin.ru";s:6:"status";s:1:"0";s:7:"comment";s:37:"Администратор сайта";s:4:"auth";b:1;}}');
 
 -- --------------------------------------------------------
 

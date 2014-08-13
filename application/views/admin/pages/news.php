@@ -1,13 +1,12 @@
 <div class="content">
-    <div class="name_page">Редактирование страниц</div>
-    <?php if($type == 'main'): ?>
+    <div class="name_page">Редактирование новостей</div>
+    <?php if($type == 'news'): ?>
     <table width="100%">
         <thead>
             <tr>
                 <th width="20">id</th>
                 <th>Нименование</th>
                 <th width="100">Опубликована</th>
-                <th width="70">В меню</th>
                 <th width="90">Создана</th>
                 <th width="90">Просмотров</th>
                 <th width="90">Удаление</th>
@@ -17,34 +16,23 @@
             <?php foreach($cont as $item): ?>
             <tr>
                 <td><?=$item['id']?></td>
-                <td><a href="/admin/mainedit/<?=$item['id']?>"><?=$item['title']?></a></td>
+                <td><a href="/admin/newsedit/<?=$item['id']?>"><?=$item['title']?></a></td>
                 <td><?=($item['in_published'])? '<span class="success round label href_white">Да</span>' : '<span class="warning round label href_white">Нет</span>' ?></td>
-                <td><?=($item['in_menu'])? '<span class="success round label href_white">Да</span>' : '<span class="warning round label href_white">Нет</span>' ?></td>
                 <td><?=mb_substr($item['created'],0,10)?></td>
                 <td><?=$item['view']?></td>
-                <td><a href="/admin/maindel/<?=$item['id']?>" class="buttom small"><span class="round alert label href_white">Удалить</span></a></td>
+                <td><a href="/admin/newsdel/<?=$item['id']?>" class="buttom small"><span class="round alert label href_white">Удалить</span></a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <a href="<?=base_url().'admin/mainnew'?>" class="button small [radius round]" >Новая страница</a>
+    <a href="<?=base_url().'admin/newsnew'?>" class="button small [radius round]" >Новая новость</a>
     <?php endif; ?>
-    <?php if($type == 'mainedit'): ?>
-    <form action="/admin/mainsave" method="post">
+    <?php if($type == 'newsedit'): ?>
+    <form action="/admin/newssave" method="post">
         <input type="hidden" name="id" value="<?=$cont['id']?>">
         <div class="large-8 columns">
         <label>Наименование
             <input type="text" name="title" value="<?=$cont['title']?>" placeholder="">
-        </label>
-        </div>
-        <div class="large-4 columns">
-        <label>Пункт меню
-            <input type="text" name="name_menu" value="<?=$cont['name_menu']?>" placeholder="">
-        </label>
-        </div>
-        <div class="large-12 columns">
-        <label>Алиас
-            <input type="text" name="slug" value="<?=$cont['slug']?>" placeholder="">
         </label>
         </div>
         <div class="large-12 columns">
@@ -68,35 +56,20 @@
         </label>
         </div>
         <div class="large-12 columns">
-            <label>Опубликована ли страница</label>
+            <label>Опубликована ли новость</label>
             <input type="radio" <?=(!$cont['in_published'])?'checked="checked"':''?> name="in_published" value="0" id="in_published"><label for="in_published">Нет</label>
             <input type="radio" <?=($cont['in_published'])?'checked="checked"':''?> name="in_published" value="1" id="in_published"><label for="in_published">Да</label>
-        </div>
-        <div class="large-12 columns">
-            <label>Разместить пункт в меню</label>
-            <input type="radio" <?=(!$cont['in_menu'])?'checked="checked"':''?> name="in_menu" value="0" id="in_menu"><label for="in_menu">Нет</label>
-            <input type="radio" <?=($cont['in_menu'])?'checked="checked"':''?> name="in_menu" value="1" id="in_menu"><label for="in_menu">Да</label>
         </div>
         <div class="large-12 columns">
             <button type="submit" class="button small blue">Сохранить</button>
         </div>
     </form>
     <?php endif; ?>
-    <?php if($type == 'mainnew'): ?>
-    <form action="/admin/mainnewsave" class="addnew" method="post">
+    <?php if($type == 'newsnew'): ?>
+    <form action="/admin/newsnewsave" class="addnew" method="post">
         <div class="large-8 columns">
         <label>Наименование
             <input type="text" name="title" required value="" placeholder="">
-        </label>
-        </div>
-        <div class="large-4 columns">
-        <label>Пункт меню
-            <input type="text" name="name_menu" required value="" placeholder="">
-        </label>
-        </div>
-        <div class="large-12 columns">
-        <label>Алиас
-            <input type="text" name="slug" required pattern="[a-zA-Z]+" value="" placeholder="">
         </label>
         </div>
         <div class="large-12 columns">
@@ -120,14 +93,9 @@
         </label>
         </div>
         <div class="large-12 columns">
-            <label>Опубликована ли страница</label>
+            <label>Опубликована ли новость</label>
             <input type="radio" name="in_published" value="0" id="in_published"><label for="in_published">Нет</label>
             <input type="radio" checked="checked" name="in_published" value="1" id="in_published"><label for="in_published">Да</label>
-        </div>
-        <div class="large-12 columns">
-            <label>Разместить пункт в меню</label>
-            <input type="radio" name="in_menu" value="0" id="in_menu"><label for="in_menu">Нет</label>
-            <input type="radio" checked="checked" name="in_menu" value="1" id="in_menu"><label for="in_menu">Да</label>
         </div>
         <div class="large-12 columns">
             <button type="submit" class="button small blue">Добавить</button>
