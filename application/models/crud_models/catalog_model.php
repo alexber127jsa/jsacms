@@ -10,8 +10,13 @@ class Catalog_model extends CI_Model {
         parent::__construct();
     }
     
-    public function select($status){
+    public function select($status,$id = 0){
         switch($status){
+            case 'id':
+                $this->db->where('id',$id);
+                $q = $this->db->get(self::T);
+                return $q->row_array();
+                break;
             case 'alladmin':
                 $this->db->order_by('id','desc');
                 $q = $this->db->get(self::T);
@@ -32,16 +37,18 @@ class Catalog_model extends CI_Model {
         }
     }
     
-    public function update(){
-        
+    public function update($d){
+        $this->db->where('id',$d['id']);
+        $this->db->update(self::T, $d);
     }
     
-    public function insert(){
-        
+    public function insert($d){
+        $this->db->insert(self::T,$d);
     }
     
-    public function delete(){
-        
+    public function delete($i){
+        $this->db->where('id',$i);
+        $this->db->delete(self::T);
     }
     
     private function recursionchild($d,$dt){

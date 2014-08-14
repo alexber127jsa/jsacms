@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
     public $cont = array();
     public $ps = 'none';
     public $out = array();
+    public $cats = array();
     
     public function __construct() {
         parent::__construct();
@@ -27,6 +28,7 @@ class Admin extends CI_Controller {
             'cont'  => $this->cont,
             'user'  => $this->us,
             'urlv'  => $this->url,
+            'cats'  => $this->cats,
             'post'  => $this->ps
         );
         $this->out['json'] = json_encode($this->out);
@@ -60,31 +62,33 @@ class Admin extends CI_Controller {
             $this->session_model->checkussess();
             switch($this->url[2]){
                 //============ CATALOG =========================================
-                /*case 'catalognew': 
+                case 'catalognew': 
                     $this->type = 'catalognew';
-                    break;*/
+                    $this->cats = $this->catalog_model->select('alladmin');
+                    break;
                 case 'catalog': 
                     $this->type = 'catalog';
                     $this->cont = $this->catalog_model->select('alladmin');
                     break;
-                /*case 'catalogsave': 
+                case 'catalogsave': 
                     $this->catalog_model->update($this->ps);
                     redirect(base_url().'admin/catalog');
                     break;
-                case 'articlesnewsave': 
-                    $this->articles_model->insert($this->ps);
+                case 'catalognewsave': 
+                    $this->catalog_model->insert($this->ps);
                     redirect(base_url().'admin/catalog');
                     break;
-                case 'articlesdel': 
+                case 'catalogdel': 
                     if(isset($this->url[3]))
-                        $this->articles_model->delete((int)$this->url[3]);
+                        $this->catalog_model->delete((int)$this->url[3]);
                     redirect(base_url().'admin/catalog');
-                case 'articlesedit': 
+                case 'catalogedit': 
                     $this->type = 'catalogedit';
                     if(isset($this->url[3]))
                         $this->cont = $this->catalog_model->select('id',(int)$this->url[3]);
+                        $this->cats = $this->catalog_model->select('alladmin');
                     if(empty($this->cont))redirect(base_url().'admin/catalog');
-                    break;*/
+                    break;
                 //============ ARTECLIS ========================================
                 case 'articlesnew': 
                     $this->type = 'articlesnew';
