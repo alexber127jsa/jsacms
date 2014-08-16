@@ -65,6 +65,23 @@ class Admin extends CI_Controller {
         if(!empty($this->url) && isset($this->url[2])){
             $this->session_model->checkussess();
             switch($this->url[2]){
+                //============ ITEMS upload image ==============================
+                case 'uploadimgitems': 
+                    $this->type = 'uploadimgitems';
+                    if((isset($this->ps['type']))&&($this->ps['type'] == 'getitemimages')){
+                        $imgs = $this->items_images_model->select('item_id',(int)$this->ps['data']);
+                        echo json_encode($imgs);
+                    }
+                    if((!empty($this->ps))&&($this->ps != 'none')&&(!isset($this->ps['type']))){
+                        $this->items_model->setimage($this->ps);
+                    }
+                    if(isset($this->url[3]) && !empty($this->url[3])){
+                        $initimage = (int)$this->url[3];
+                        if(!empty($initimage)){
+                            $this->load->view('admin/pages/loadimgitems',array('id'=>$initimage));
+                        }
+                    }
+                    break;
                 //============ ITEMS ===========================================
                 case 'itemsnew': 
                     $this->type = 'itemsnew';
@@ -91,6 +108,9 @@ class Admin extends CI_Controller {
                     $this->type = 'itemsedit';
                     if(isset($this->url[3]))
                         $this->cont = $this->items_model->select('id',(int)$this->url[3]);
+                        if(!empty($this->cont)){
+                            $this->cont['images'] = $this->items_images_model->select('item_id',(int)$this->url[3]);
+                        }
                         $this->cats = $this->catalog_model->select('getforitems');
                     if(empty($this->cont))redirect(base_url().'admin/items');
                     break;
@@ -212,6 +232,7 @@ class Admin extends CI_Controller {
     }
     
     private function routepathpost() {
+        
         switch ($this->ps['data']['type']) {
             case 'usercheck':
                 if(isset($this->ps['data']['valdt'])){
@@ -244,6 +265,7 @@ class Admin extends CI_Controller {
         $this->us   = $this->session_model->getusdata();
         $this->url  = $this->uri->segments;
         $this->load->library('admin/display_admin_lib');
+        $this->load->model('logic_models/items_images_model');
     }
     
 }

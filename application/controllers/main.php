@@ -20,7 +20,7 @@ class Main extends CI_Controller {
         parent::__construct();
         $this->baseload();
         $this->urlroute();
-        $this->output->enable_profiler(TRUE);
+        //$this->output->enable_profiler(TRUE);
     }
     
     public function index() {

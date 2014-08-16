@@ -83,6 +83,18 @@
                 </select>
             </label>
         </div>
+        
+        <div class="large-12 columns artimages">
+            <label>Изображения</label>
+            <ul class="images_item">
+                <li class="addnewimage" onclick="utils.loadImgItems(<?=$cont['id']?>)"><span>Добавить изображение</span></li>
+                <?php foreach($cont['images'] as $item): ?>
+                    <li style="background-image: url(/userfiles/items/thumbs/<?php echo $item['name_file'].'_thumb.'.$item['ext_file']; ?>);"></li>
+                <?php endforeach; ?>
+            </ul>
+            <div class="flc"></div>
+        </div>
+        
         <div class="large-12 columns">
             <label>Опубликован ли товар</label>
             <input type="radio" <?=(!$cont['in_published'])?'checked="checked"':''?> name="in_published" value="0" id="in_published"><label for="in_published">Нет</label>
