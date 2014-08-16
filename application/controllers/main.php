@@ -8,7 +8,8 @@ class Main extends CI_Controller {
     public $mods = array(
         'top_menu'      => array(),
         'last_news'     => array(),
-        'last_articles' => array()
+        'last_articles' => array(),
+        'cats_tree'     => array()
     );
     public $page = array(
         
@@ -57,7 +58,8 @@ class Main extends CI_Controller {
         $this->mods = array(
             'top_menu'      => $this->modules_model->top_menu(),
             'last_news'     => $this->modules_model->last_news(),
-            'last_articles' => $this->modules_model->last_articles()
+            'last_articles' => $this->modules_model->last_articles(),
+            'cats_tree'     => $this->modules_model->getcatstree()
         );
         
         

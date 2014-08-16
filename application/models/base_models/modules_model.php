@@ -59,4 +59,8 @@ class Modules_model extends CI_Model {
         return $data;
     }
     
+    public function getcatstree(){
+        return $this->catalog_model->select('all');
+    }
+    
 }

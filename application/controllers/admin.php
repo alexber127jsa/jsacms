@@ -54,6 +54,11 @@ class Admin extends CI_Controller {
             case 'catalognew':
                 $this->display_admin_lib->catalog();
                 break;
+            case 'items':
+            case 'itemsedit':
+            case 'itemsnew':
+                $this->display_admin_lib->items();
+                break;
         }
     }
     
@@ -61,6 +66,35 @@ class Admin extends CI_Controller {
         if(!empty($this->url) && isset($this->url[2])){
             $this->session_model->checkussess();
             switch($this->url[2]){
+                //============ ITEMS ===========================================
+                case 'itemsnew': 
+                    $this->type = 'itemsnew';
+                    $this->cats = $this->catalog_model->select('getforitems');
+                    break;
+                case 'items': 
+                    $this->type = 'items';
+                    $this->cont = $this->items_model->select('all');
+                    $this->cats = $this->catalog_model->select('getforitems');
+                    break;
+                case 'itemssave': 
+                    $this->items_model->update($this->ps);
+                    redirect(base_url().'admin/items');
+                    break;
+                case 'itemsnewsave': 
+                    $this->items_model->insert($this->ps);
+                    redirect(base_url().'admin/items');
+                    break;
+                case 'itemsdel': 
+                    if(isset($this->url[3]))
+                        $this->items_model->delete((int)$this->url[3]);
+                    redirect(base_url().'admin/items');
+                case 'itemsedit': 
+                    $this->type = 'itemsedit';
+                    if(isset($this->url[3]))
+                        $this->cont = $this->items_model->select('id',(int)$this->url[3]);
+                        $this->cats = $this->catalog_model->select('getforitems');
+                    if(empty($this->cont))redirect(base_url().'admin/items');
+                    break;
                 //============ CATALOG =========================================
                 case 'catalognew': 
                     $this->type = 'catalognew';

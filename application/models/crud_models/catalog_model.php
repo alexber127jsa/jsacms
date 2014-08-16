@@ -17,19 +17,32 @@ class Catalog_model extends CI_Model {
                 $q = $this->db->get(self::T);
                 return $q->row_array();
                 break;
+            case 'getforitems':
+                $this->db->select('id');
+                $this->db->select('title');
+                $q = $this->db->get(self::T);
+                return $q->result_array();
+                break;
             case 'alladmin':
                 $this->db->order_by('id','desc');
                 $q = $this->db->get(self::T);
                 return $q->result_array();
                 break;
             case'all':
+                $this->db->select('id');
+                $this->db->select('slug');
+                $this->db->select('title');
+                $this->db->select('parent_id');
+                $this->db->select('in_published');
                 $q = $this->db->get(self::T);
                 $data = $q->result_array();
                 if($data){
                     $this->time = $data;
-                    foreach($data as $i)
-                        if($i['parent_id'] == '0')
+                    foreach($data as $i){
+                        if($i['parent_id'] == '0'){
                             $this->compl[] = $this->recursionchild($i,$this->time);
+                        }
+                    }
                     $data = $this->compl;
                 }
                 return $data;
