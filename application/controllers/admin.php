@@ -14,7 +14,6 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->baseload();
         $this->postinit();
-        //$this->output->enable_profiler(TRUE);
     }
     
     public function index(){

@@ -20,6 +20,7 @@ class Main extends CI_Controller {
         parent::__construct();
         $this->baseload();
         $this->urlroute();
+        $this->output->enable_profiler(TRUE);
     }
     
     public function index() {
@@ -59,7 +60,8 @@ class Main extends CI_Controller {
             'top_menu'      => $this->modules_model->top_menu(),
             'last_news'     => $this->modules_model->last_news(),
             'last_articles' => $this->modules_model->last_articles(),
-            'cats_tree'     => $this->modules_model->getcatstree()
+            'cats_tree'     => $this->modules_model->getcatstree(),
+            'last_items'    => $this->modules_model->getlastitems()
         );
         
         

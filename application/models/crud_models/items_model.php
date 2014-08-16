@@ -10,6 +10,12 @@ class Items_model extends CI_Model {
     
      public function select($status,$id = 0){
         switch($status){
+            case 'lastitems':
+                $this->db->order_by('id','desc');
+                $this->db->limit(10);
+                $q = $this->db->get(self::T);
+                return $q->result_array();
+                break;
             case 'id':
                 $this->db->where('id',$id);
                 $q = $this->db->get(self::T);

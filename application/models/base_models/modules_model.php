@@ -63,4 +63,8 @@ class Modules_model extends CI_Model {
         return $this->catalog_model->select('all');
     }
     
+    public function getlastitems(){
+        return $this->items_model->select('lastitems');
+    }
+    
 }
