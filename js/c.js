@@ -3,7 +3,10 @@ var userF = {};
 
 function userFClass(){
     this.constr = function(){
-        
+        this.foundConnect();
+    };
+    this.foundConnect = function(){
+        $(document).foundation();
     };
     this.constr();
 }

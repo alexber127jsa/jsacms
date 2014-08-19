@@ -63,14 +63,6 @@ class Main extends CI_Controller {
             'cats_tree'     => $this->modules_model->getcatstree(),
             'last_items'    => $this->modules_model->getlastitems()
         );
-        
-        
-        echo '<pre>';
-        print_r($this->mods);
-        echo '</pre>';
-        
-        
-        
     }
     
     private function urlroute(){
@@ -82,7 +74,8 @@ class Main extends CI_Controller {
                 case 'catalog':  $this->type = 'catalog';   break;
                 case 'items':    $this->type = 'items';     break;
                 case 'contacts': $this->type = 'contacts';  break;
-                default :        $this->type = 'main';      break; 
+                //default :        $this->type = 'main';      break; 
+                default :        $this->type = $this->url[1];      break; 
             }
         } else {
             $this->type = 'main';

@@ -71,6 +71,7 @@ class Admin extends CI_Controller {
                     if((isset($this->ps['type']))&&($this->ps['type'] == 'getitemimages')){
                         $imgs = $this->items_images_model->select('item_id',(int)$this->ps['data']);
                         echo json_encode($imgs);
+                        exit();
                     }
                     if((!empty($this->ps))&&($this->ps != 'none')&&(!isset($this->ps['type']))){
                         $this->items_model->setimage($this->ps);
