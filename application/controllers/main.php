@@ -88,7 +88,7 @@ class Main extends CI_Controller {
     }
     
     private function out(){
-        $this->display_lib->main();
+        $this->display_lib->main($this->mods);
     }
 
 }
