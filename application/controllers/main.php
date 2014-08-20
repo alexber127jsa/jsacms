@@ -7,7 +7,9 @@ class Main extends CI_Controller {
     public $type;
     public $mods = array(
         'top_menu'      => array(),
-        'last_news'     => array()
+        'last_news'     => array(),
+        'last_articles' => array(),
+        'cats_tree'     => array()
     );
     public $page = array(
         
@@ -18,6 +20,7 @@ class Main extends CI_Controller {
         parent::__construct();
         $this->baseload();
         $this->urlroute();
+        //$this->output->enable_profiler(TRUE);
     }
     
     public function index() {
@@ -54,17 +57,12 @@ class Main extends CI_Controller {
     
     private function loadmodules(){
         $this->mods = array(
-            'top_menu'  => $this->modules_model->top_menu(),
-            'last_news' => $this->modules_model->last_news()
+            'top_menu'      => $this->modules_model->top_menu(),
+            'last_news'     => $this->modules_model->last_news(),
+            'last_articles' => $this->modules_model->last_articles(),
+            'cats_tree'     => $this->modules_model->getcatstree(),
+            'last_items'    => $this->modules_model->getlastitems()
         );
-        
-        
-        echo '<pre>';
-        print_r($this->mods);
-        echo '</pre>';
-        
-        
-        
     }
     
     private function urlroute(){
@@ -76,7 +74,8 @@ class Main extends CI_Controller {
                 case 'catalog':  $this->type = 'catalog';   break;
                 case 'items':    $this->type = 'items';     break;
                 case 'contacts': $this->type = 'contacts';  break;
-                default :        $this->type = 'main';      break; 
+                //default :        $this->type = 'main';      break; 
+                default :        $this->type = $this->url[1];      break; 
             }
         } else {
             $this->type = 'main';
@@ -89,7 +88,7 @@ class Main extends CI_Controller {
     }
     
     private function out(){
-        $this->display_lib->main();
+        $this->display_lib->main($this->mods);
     }
 
 }

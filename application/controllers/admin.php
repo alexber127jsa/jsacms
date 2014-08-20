@@ -8,12 +8,12 @@ class Admin extends CI_Controller {
     public $cont = array();
     public $ps = 'none';
     public $out = array();
+    public $cats = array();
     
     public function __construct() {
         parent::__construct();
         $this->baseload();
         $this->postinit();
-        //$this->output->enable_profiler(TRUE);
     }
     
     public function index(){
@@ -27,6 +27,7 @@ class Admin extends CI_Controller {
             'cont'  => $this->cont,
             'user'  => $this->us,
             'urlv'  => $this->url,
+            'cats'  => $this->cats,
             'post'  => $this->ps
         );
         $this->out['json'] = json_encode($this->out);
@@ -47,6 +48,16 @@ class Admin extends CI_Controller {
             case 'articlesnew':
                 $this->display_admin_lib->articles();
                 break;
+            case 'catalog':
+            case 'catalogedit':
+            case 'catalognew':
+                $this->display_admin_lib->catalog();
+                break;
+            case 'items':
+            case 'itemsedit':
+            case 'itemsnew':
+                $this->display_admin_lib->items();
+                break;
         }
     }
     
@@ -54,7 +65,85 @@ class Admin extends CI_Controller {
         if(!empty($this->url) && isset($this->url[2])){
             $this->session_model->checkussess();
             switch($this->url[2]){
-                //============ ARTECLIS ============================================
+                //============ ITEMS upload image ==============================
+                case 'uploadimgitems': 
+                    $this->type = 'uploadimgitems';
+                    if((isset($this->ps['type']))&&($this->ps['type'] == 'getitemimages')){
+                        $imgs = $this->items_images_model->select('item_id',(int)$this->ps['data']);
+                        echo json_encode($imgs);
+                        exit();
+                    }
+                    if((!empty($this->ps))&&($this->ps != 'none')&&(!isset($this->ps['type']))){
+                        $this->items_model->setimage($this->ps);
+                    }
+                    if(isset($this->url[3]) && !empty($this->url[3])){
+                        $initimage = (int)$this->url[3];
+                        if(!empty($initimage)){
+                            $this->load->view('admin/pages/loadimgitems',array('id'=>$initimage));
+                        }
+                    }
+                    break;
+                //============ ITEMS ===========================================
+                case 'itemsnew': 
+                    $this->type = 'itemsnew';
+                    $this->cats = $this->catalog_model->select('getforitems');
+                    break;
+                case 'items': 
+                    $this->type = 'items';
+                    $this->cont = $this->items_model->select('all');
+                    $this->cats = $this->catalog_model->select('getforitems');
+                    break;
+                case 'itemssave': 
+                    $this->items_model->update($this->ps);
+                    redirect(base_url().'admin/items');
+                    break;
+                case 'itemsnewsave': 
+                    $this->items_model->insert($this->ps);
+                    redirect(base_url().'admin/items');
+                    break;
+                case 'itemsdel': 
+                    if(isset($this->url[3]))
+                        $this->items_model->delete((int)$this->url[3]);
+                    redirect(base_url().'admin/items');
+                case 'itemsedit': 
+                    $this->type = 'itemsedit';
+                    if(isset($this->url[3]))
+                        $this->cont = $this->items_model->select('id',(int)$this->url[3]);
+                        if(!empty($this->cont)){
+                            $this->cont['images'] = $this->items_images_model->select('item_id',(int)$this->url[3]);
+                        }
+                        $this->cats = $this->catalog_model->select('getforitems');
+                    if(empty($this->cont))redirect(base_url().'admin/items');
+                    break;
+                //============ CATALOG =========================================
+                case 'catalognew': 
+                    $this->type = 'catalognew';
+                    $this->cats = $this->catalog_model->select('alladmin');
+                    break;
+                case 'catalog': 
+                    $this->type = 'catalog';
+                    $this->cont = $this->catalog_model->select('alladmin');
+                    break;
+                case 'catalogsave': 
+                    $this->catalog_model->update($this->ps);
+                    redirect(base_url().'admin/catalog');
+                    break;
+                case 'catalognewsave': 
+                    $this->catalog_model->insert($this->ps);
+                    redirect(base_url().'admin/catalog');
+                    break;
+                case 'catalogdel': 
+                    if(isset($this->url[3]))
+                        $this->catalog_model->delete((int)$this->url[3]);
+                    redirect(base_url().'admin/catalog');
+                case 'catalogedit': 
+                    $this->type = 'catalogedit';
+                    if(isset($this->url[3]))
+                        $this->cont = $this->catalog_model->select('id',(int)$this->url[3]);
+                        $this->cats = $this->catalog_model->select('alladmin');
+                    if(empty($this->cont))redirect(base_url().'admin/catalog');
+                    break;
+                //============ ARTECLIS ========================================
                 case 'articlesnew': 
                     $this->type = 'articlesnew';
                     break;
@@ -144,6 +233,7 @@ class Admin extends CI_Controller {
     }
     
     private function routepathpost() {
+        
         switch ($this->ps['data']['type']) {
             case 'usercheck':
                 if(isset($this->ps['data']['valdt'])){
@@ -176,6 +266,7 @@ class Admin extends CI_Controller {
         $this->us   = $this->session_model->getusdata();
         $this->url  = $this->uri->segments;
         $this->load->library('admin/display_admin_lib');
+        $this->load->model('logic_models/items_images_model');
     }
     
 }

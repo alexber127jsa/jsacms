@@ -32,7 +32,7 @@
         <input type="hidden" name="id" value="<?=$cont['id']?>">
         <div class="large-8 columns">
         <label>Наименование
-            <input type="text" name="title" value="<?=$cont['title']?>" placeholder="">
+            <input type="text" name="title" required value="<?=$cont['title']?>" placeholder="">
         </label>
         </div>
         <div class="large-12 columns">
@@ -47,12 +47,12 @@
         </div>
         <div class="large-12 columns">
         <label>Краткое описание
-            <textarea name="summary" placeholder=""><?=$cont['summary']?></textarea>
+            <textarea name="summary" required placeholder=""><?=$cont['summary']?></textarea>
         </label>
         </div>
         <div class="large-12 columns">
         <label>Полное описание
-            <textarea name="content" placeholder=""><?=$cont['content']?></textarea>
+            <textarea name="content" required placeholder=""><?=$cont['content']?></textarea>
         </label>
         </div>
         <div class="large-12 columns">

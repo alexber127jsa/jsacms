@@ -136,3 +136,94 @@ a:hover {
     border-top: 1px dashed #cccccc;
     text-align: right;
 }
+.artimages {
+    border: 3px dashed #cccccc;
+    margin: 0 15px 15px 15px;
+    padding: 10px;
+    width: 98% !important;
+}
+.images_item {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.images_item li {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: #F4F4F4;
+    margin: 3px;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+}
+.artimages label {
+    padding: 0 0 5px 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px dashed #cccccc;
+}
+.addnewimage {
+    background-color: #e9eaee;
+    cursor: pointer;
+    text-align: center;
+    color: #8f8f8f;
+}
+.addnewimage span{
+    display: block;
+    padding: 22px 0 0 0;
+}
+.fonpopup {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.28);
+}
+.popup {
+    position: relative;
+    display: block;
+    margin: 5% auto;
+    width: 700px;
+    height: 500px;
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+.close {
+    position: absolute;
+    top: -22px;
+    right: -22px;
+    width: 64px;
+    height: 64px;
+    background-color: #ffffff;
+    background-image: url(/img/close.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+    cursor: pointer;
+}
+.uploadimgitems {
+    display: block;
+    border: 1px solid #cccccc;
+    width: 680px;
+    height: 417px;
+}
+.flcn {
+    clear: both;
+    display: block;
+    margin: 5px 0 0 0;
+    padding: 5px 0 0 0;
+    border-top: 1px dashed #cccccc;
+}
